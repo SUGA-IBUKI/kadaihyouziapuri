@@ -1,0 +1,139 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def get_assignments(subject):
+    assignments = {
+        'インターンシップ': {
+            1: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=108404',
+            2: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=108410',
+            3: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112458'
+        },
+        'シミュレーション工学': {
+            2: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110157',
+            3: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110420',
+            4: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110700',
+            5: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110831',
+            6: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111165',
+            7: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111274',
+            8: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111435',
+            9: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111613',
+            10: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111840',
+            11: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112005',
+            12: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112220',
+            13: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112464'
+        },
+        '情報理論': {
+            1: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=109668',
+            2: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110204',
+            3: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110381',
+            4: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110747',
+            5: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110770',
+            6: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110771',
+            7: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111301',
+            9: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111712',
+            10: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111893',
+            11: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111953',
+            12: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112221',
+            13: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112537',
+            14: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112677'
+        },
+        '応用統計': {
+            1: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108019',
+            2: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108024',
+            3: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108026',
+            4: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=110752',
+            5: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/url/view.php?id=110926',
+            6: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=111162',
+            8: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108040',
+            9: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108044',
+            10: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108047',
+            11: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108051',
+            12: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108055',
+            13: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108057',
+            14: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/resource/view.php?id=108060'
+        },
+        'ソフトウェア工学': {
+            1: 'https://drive.google.com/file/d/1jYCQwDqvn-92-APTk2iK2d6c6pD0VKNO/view?usp=classroom_web&authuser=0',
+            2: 'https://drive.google.com/file/d/1xv2lm8wjUm0d066z8GQJV91StR5WxFGe/view?usp=classroom_web&authuser=0',
+            3: 'https://drive.google.com/file/d/1CsoRTOm6k7Nuv5ulgIQumKAEnCmRE35J/view?usp=classroom_web&authuser=0',
+            4: 'https://drive.google.com/file/d/1-aZu-z5JwdAE_IHExm1blPBOiDBHeK65/view?usp=classroom_web&authuser=0',
+            5: 'https://drive.google.com/file/d/1nTPAjxHzJHajZidHlemmh_1oqiW1j8iI/view?usp=classroom_web&authuser=0',
+            6: 'https://drive.google.com/file/d/1DwYhhYIF0g9pGYA-7HgKFL7ZfEGX8sFc/view?usp=classroom_web&authuser=0',
+            7: 'https://drive.google.com/file/d/1nqTj0R67SlLSqwGPQNemVfHIU1A3Ct-f/view?usp=classroom_web&authuser=0',
+            8: 'https://drive.google.com/file/d/1pdU849QRvKOuBHYDJ8CECIhZFF4irao5/view?usp=classroom_web&authuser=0',
+            10: 'https://drive.google.com/file/d/1KcJIYlWtKZDWM-5yC7e2PGAMQYmdYl1f/view?usp=classroom_web&authuser=0',
+            11: 'https://docs.google.com/presentation/d/1reniCF8pdi7fVQD4pWxrFMUvzXp-GQN-pY4Ar-Jq2Ls/edit?usp=classroom_web&authuser=0',
+            12: 'https://docs.google.com/presentation/d/1EtY4MqO_A_gPg_Shl21tQ4wkGFzzZ-oea19nR-Ej44g/edit?usp=classroom_web&authuser=0',
+            13: 'https://docs.google.com/presentation/d/1u8gXDDQ30nUfJD65RfcehjUg0K_o16c9E0vSxs8zqrY/edit?usp=classroom_web&authuser=0',
+            14: 'https://docs.google.com/presentation/d/12jH7LW8Xqktm0e1HGVMpF4cnz_H12hOJ1HYTzCuPA5M/edit?usp=classroom_web&authuser=0'
+        },
+        '応用数学': {
+            1: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=109873',
+            2: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110238',
+            3: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110489',
+            4: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110605',
+            5: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110759',
+            6: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110761',
+            7: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=110762',
+            9: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111558',
+            10: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111749',
+            11: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=111941',
+            12: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112101',
+            13: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112147',
+            14: 'https://moodle.ce.cst.nihon-u.ac.jp/mod/assign/view.php?id=112713'
+        }
+    }
+    
+    if subject in assignments:
+        return assignments[subject]
+    else:
+        return "指定された科目は存在しません。"
+
+def get_assignment_url(subject, week):
+    assignments = get_assignments(subject)
+    if isinstance(assignments, dict) and week in assignments:
+        return assignments[week]
+    else:
+        return "指定された科目または授業回は存在しません。"
+
+# GUIアプリケーションの作成
+class AssignmentApp:
+    def __init__(self, root):
+        self.root = root
+        root.title("課題リンク取得アプリ")
+
+        # 科目ラベルと入力ボックス
+        self.subject_label = tk.Label(root, text="科目:")
+        self.subject_label.pack()
+        self.subject_entry = tk.Entry(root)
+        self.subject_entry.pack()
+
+        # 授業回ラベルと入力ボックス
+        self.week_label = tk.Label(root, text="授業回:")
+        self.week_label.pack()
+        self.week_entry = tk.Entry(root)
+        self.week_entry.pack()
+
+        # 提出ボタン
+        self.get_url_button = tk.Button(root, text="URLを取得", command=self.get_url)
+        self.get_url_button.pack()
+
+        # 結果表示ラベル
+        self.result_label = tk.Label(root, text="")
+        self.result_label.pack()
+
+    def get_url(self):
+        subject = self.subject_entry.get()
+        try:
+            week = int(self.week_entry.get())
+        except ValueError:
+            messagebox.showerror("エラー", "授業回には数字を入力してください。")
+            return
+        
+        url = get_assignment_url(subject, week)
+        self.result_label.config(text=f'第{week}回のURL: {url}')
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = AssignmentApp(root)
+    root.mainloop()
